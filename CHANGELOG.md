@@ -2,7 +2,27 @@
 
 Changes for users of the library currently on `develop`:
 
-_This space intentionally left blank._
+- Fixed some tests, added tests for NYTPhotoViewerSinglePhotoDataSource
+- Fixed a strict warning and a subscripting bug in NYTPhotoViewerArrayDataSource.m
+- Added support for interstitial views
+
+## [2.0.0](https://github.com/NYTimes/NYTPhotoViewer/releases/tag/2.0.0)
+
+Changes for users of the library in 2.0.0:
+
+- Expose a data-source-oriented API for PhotosViewController ([#226](https://github.com/NYTimes/NYTPhotoViewer/pull/226))
+    - A data source no longer has to handle out-of-bounds indexes ([#227](https://github.com/NYTimes/NYTPhotoViewer/pull/227))
+    - The data source is not retained ([#227](https://github.com/NYTimes/NYTPhotoViewer/pull/227))
+- Respect safe areas for iOS 11 support
+
+## [1.2.0](https://github.com/NYTimes/NYTPhotoViewer/releases/tag/1.2.0)
+
+Changes for users of the library in 1.2.0:
+
+- Add Carthage support ([#164](https://github.com/NYTimes/NYTPhotoViewer/pull/164), [#167](https://github.com/NYTimes/NYTPhotoViewer/pull/167)), ([#171](https://github.com/NYTimes/NYTPhotoViewer/pull/171))
+- Fix gradient flickering of caption view on iOS 9 ([#166](https://github.com/NYTimes/NYTPhotoViewer/pull/166))
+- Readd loading view when photo source is set back to nil ([#187](https://github.com/NYTimes/NYTPhotoViewer/pull/187))
+- Include all files in the bundle, not just PNGs, in Cocoapods resource bundle ([#170](https://github.com/NYTimes/NYTPhotoViewer/pull/170))
 
 ## [1.1.0](https://github.com/NYTimes/NYTPhotoViewer/releases/tag/1.1.0)
 
