@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 extern NSString * const NYTPhotosViewControllerDidNavigateToPhotoNotification;
 
+extern NSString * const NYTPhotosViewControllerDidNavigateToInterstitialViewNotification;
+
 /**
  *  Notification name issued when this `NYTPhotosViewController` is about to be dismissed.
  *
@@ -185,6 +187,15 @@ extern NSString * const NYTPhotosViewControllerDidDismissNotification;
 - (void)photosViewController:(NYTPhotosViewController *)photosViewController didNavigateToPhoto:(id <NYTPhoto>)photo atIndex:(NSUInteger)photoIndex;
 
 /**
+ *  Called when a new interstitial view is displayed through a swipe gesture.
+ *
+ *  @param photosViewController The `NYTPhotosViewController` instance that sent the delegate message.
+ *  @param view                 The view that was just displayed.
+ *  @param index                The index of the view that was just displayed.
+ */
+- (void)photosViewController:(NYTPhotosViewController *)photosViewController didNavigateToInterstialView:(UIView *)view atIndex:(NSUInteger)index;
+
+/**
  *  Called immediately before the `NYTPhotosViewController` is about to start a user-initiated dismissal.
  *  This will be the beginning of the interactive panning to dismiss, if it is enabled and performed.
  *
@@ -212,6 +223,18 @@ extern NSString * const NYTPhotosViewControllerDidDismissNotification;
  *  @return A view to display as the caption for the photo. Return `nil` to show a default view generated from the caption properties on the photo object.
  */
 - (UIView * _Nullable)photosViewController:(NYTPhotosViewController *)photosViewController captionViewForPhoto:(id <NYTPhoto>)photo;
+
+/**
+ *  Returns whether the caption view should respect the safe area.
+ *
+ * @note If this method is not implemented it will default to `YES`.
+ *
+ *  @param photosViewController The `NYTPhotosViewController` instance that sent the delegate message.
+ *  @param photo                The photo object over which to display the caption view.
+ *
+ *  @return A `BOOL` indicating whether the caption view should respect the safe area for the given photo or not.
+ */
+- (BOOL)photosViewController:(NYTPhotosViewController *)photosViewController captionViewRespectsSafeAreaForPhoto:(id <NYTPhoto>)photo;
 
 /**
  *  Returns a string to display as the title in the navigation-bar area for a photo.
@@ -285,6 +308,16 @@ extern NSString * const NYTPhotosViewControllerDidDismissNotification;
  *  @param activityType         The activity type that was successfully shared.
  */
 - (void)photosViewController:(NYTPhotosViewController *)photosViewController actionCompletedWithActivityType:(NSString * _Nullable)activityType;
+
+/**
+ *  called when an `NYTInterstitialViewController` is created but before it is displayed. Returns the view to display as an interstitial view.
+ *
+ *  @param photosViewController The `NYTPhotosViewController` instance that sent the delegate message.
+ *  @param index                The index in the page view controller where the view will be displayed.
+ *
+ *  @return A `UIView`.
+ */
+- (UIView *)photosViewController:(NYTPhotosViewController *)photosViewController interstitialViewAtIndex:(NSUInteger)index;
 
 @end
 
